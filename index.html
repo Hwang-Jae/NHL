@@ -148,22 +148,22 @@
 
        /* 수정 전: grid-template-columns: 1fr 1fr; */
 
-/* 수정 후: 카드가 자동으로 늘어나거나 줄어들도록 변경 */
-.roadmap-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 반응형 3열 배치 */
-    gap: 30px;
-    margin-top: 20px;
-}
+	/* 수정 후: 카드가 자동으로 늘어나거나 줄어들도록 변경 */
+	.roadmap-grid {
+    	display: grid;
+    	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 반응형 3열 배치 */
+    	gap: 30px;
+    	margin-top: 20px;
+	}
 
-/* Phase 3 배지 색상 추가 */
-.badge.phase3 { 
-    background-color: rgba(244, 63, 94, 0.15); 
-    color: #fb7185; /* Rose Color */
-    border: 1px solid rgba(244, 63, 94, 0.3); 
-}
+	/* Phase 3 배지 색상 추가 */
+	.badge.phase3 { 
+    	background-color: rgba(244, 63, 94, 0.15); 
+    	color: #fb7185; /* Rose Color */
+    	border: 1px solid rgba(244, 63, 94, 0.3); 
+	}
 
-.roadmap-card.phase3::before { background: #fb7185; }
+	.roadmap-card.phase3::before { background: #fb7185; }
 
         .roadmap-card {
             background: rgba(255, 255, 255, 0.05);
@@ -339,6 +339,72 @@
             font-size: 0.9rem;
         }
 
+	/* 링크가 걸린 이미지는 마우스 커서를 손가락 모양으로 변경 */
+	.phase-img-wrapper a {
+    	display: block;
+    	width: 100%;
+    	height: 100%;
+    	cursor: pointer;
+	}
+
+	/* 툴팁(Tooltip) 스타일 정의 */
+	.tooltip {
+    	position: relative;
+    	cursor: help; /* 마우스 올리면 물음표 커서 */
+    	border-bottom: 1px dotted var(--accent-color); /* 하단 점선 강조 */
+    	color: var(--accent-color);
+    	font-weight: bold;
+    	display: inline-block;
+	}
+
+	/* 툴팁 말풍선 본문 (기본 숨김) */
+	.tooltip::after {
+    	content: attr(data-tooltip); /* HTML의 data-tooltip 속성 값을 가져옴 */
+    	position: absolute;
+    	bottom: 130%; /* 글자 위에 배치 */
+    	left: 50%;
+    	transform: translateX(-50%);
+    	width: 240px; /* 말풍선 너비 */
+    	padding: 10px 12px;
+    	background-color: rgba(15, 23, 42, 0.95); /* 배경색 (Deep Navy) */
+    	border: 1px solid var(--accent-color); /* 테두리 (Sky Blue) */
+    	color: #fff;
+    	text-align: center;
+    	border-radius: 8px;
+    	font-size: 0.85rem;
+    	line-height: 1.4;
+    	opacity: 0;
+    	visibility: hidden;
+    	transition: all 0.3s ease;
+    	z-index: 1000;
+    	box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    	pointer-events: none;
+    	white-space: normal;
+	}
+
+	/* 툴팁 말풍선 아래 화살표 */
+	.tooltip::before {
+    	content: "";
+    	position: absolute;
+    	bottom: 120%;
+    	left: 50%;
+    	margin-left: -6px;
+    	border-width: 6px;
+    	border-style: solid;
+    	border-color: var(--accent-color) transparent transparent transparent;
+    	opacity: 0;
+    	visibility: hidden;
+    	transition: all 0.3s ease;
+	}
+
+	/* 마우스 올렸을 때(Hover) 보이기 */
+	.tooltip:hover::after,
+	.tooltip:hover::before {
+    	opacity: 1;
+    	visibility: visible;
+    	transform: translateX(-50%) translateY(-5px); /* 살짝 위로 떠오르는 효과 */
+	}
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
@@ -437,10 +503,21 @@
     			</div>
     			<p>어떤 굴곡에도 완벽히 밀착되는 <strong>'피부 부착형'</strong> 디스플레이</p>
     			<ul>
-        			<li><strong>핵심 기술:</strong> <span class="text-highlight">Exiplex 고효율 발광층</span> (EQE 17%)</li>
-        			<li><strong>특징:</strong> 고무처럼 늘어나는 3D 신축성, 내충격성</li>
-        			<li><strong>활용:</strong> 천장 손잡이, 굴곡진 필러까지 끊김 없는 화면 확장</li>
-    			</ul>
+    				<li>
+        				<strong>핵심 기술:</strong> 
+        				<span class="tooltip" data-tooltip="서로 다른 두 분자가 결합하여 에너지를 고효율로 전달하는 현상">Exiplex</span> 
+        				고효율 발광층 
+        				(<span class="tooltip" data-tooltip="외부 양자 효율(External Quantum Efficiency): 전자가 빛으로 변환되어 방출되는 비율">EQE</span> 17%)
+    				</li>
+    				<li>
+        				<strong>특징:</strong> 고무처럼 늘어나는 3D 신축성, 내충격성
+    				</li>
+    				<li>
+        				<strong>활용:</strong> 천장 손잡이, 굴곡진 필러 등 
+        				<span class="tooltip" data-tooltip="정해진 형태 없이 자유롭게 변형 가능한 디스플레이">Free-Form</span> 
+        				구현
+    				</li>
+			</ul>
 		</div>
 
             </div>
@@ -582,16 +659,16 @@
                     <div class="process-step">
                         <div class="step-number">2</div>
                         <div class="step-content">
-                            <strong>박막 봉지 (TFE)</strong>
-                            <span style="font-size:0.85rem; color:var(--text-sub);">수분 침투를 막기 위해 유기/무기막을 교차로 적층</span>
-                        </div>
+    				<strong>박막 봉지 (<span class="tooltip" data-tooltip="Thin Film Encapsulation: 유기물을 수분/산소로부터 보호하기 위해 얇은 막을 씌우는 기술">TFE</span>)</strong>
+    				<span style="font-size:0.85rem; color:var(--text-sub);">수분 침투를 막기 위해 유기/무기막을 교차로 적층</span>
+			</div>
                     </div>
                     <div class="process-step">
                         <div class="step-number">3</div>
                         <div class="step-content">
-                            <strong>LLO (Laser Lift-Off)</strong>
-                            <span style="font-size:0.85rem; color:var(--text-sub);">레이저를 쏘아 캐리어 글래스를 떼어내고 필름 형태만 남김</span>
-                        </div>
+    				<strong><span class="tooltip" data-tooltip="Laser Lift-Off: 레이저를 쏘아 유리기판을 떼어내고 유연한 필름만 남기는 공정">LLO</span> (Laser Lift-Off)</strong>
+    				<span style="font-size:0.85rem; color:var(--text-sub);">캐리어 글래스를 떼어내고 필름 형태만 남김</span>
+			</div>
                     </div>
                     <div class="process-step">
                         <div class="step-number">4</div>
