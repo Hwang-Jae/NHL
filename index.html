@@ -146,13 +146,24 @@
             /* opacity: 1; */
         }
 
-        /* Roadmap Grid */
-        .roadmap-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 20px;
-        }
+       /* 수정 전: grid-template-columns: 1fr 1fr; */
+
+/* 수정 후: 카드가 자동으로 늘어나거나 줄어들도록 변경 */
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 반응형 3열 배치 */
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Phase 3 배지 색상 추가 */
+.badge.phase3 { 
+    background-color: rgba(244, 63, 94, 0.15); 
+    color: #fb7185; /* Rose Color */
+    border: 1px solid rgba(244, 63, 94, 0.3); 
+}
+
+.roadmap-card.phase3::before { background: #fb7185; }
 
         .roadmap-card {
             background: rgba(255, 255, 255, 0.05);
@@ -415,6 +426,23 @@
                         <li><strong>과제:</strong> 루프 고열 차단(Cooling) 및 충격 안전성</li>
                     </ul>
                 </div>
+
+		<div class="roadmap-card phase3">
+    			<span class="badge phase3">Phase 3 : Future (혁신)</span>
+    			<h3>Free-Form Skin</h3>
+    			<div class="phase-img-wrapper">
+        			<a href="https://n.news.naver.com/mnews/article/052/0002301481?type=journalists" target="_blank" title="관련 뉴스 보기: 세계 최고 효율 신축성 OLED">
+            				<img src="image4.png" alt="Stretchable OLED Concept">
+       				 </a>
+    			</div>
+    			<p>어떤 굴곡에도 완벽히 밀착되는 <strong>'피부 부착형'</strong> 디스플레이</p>
+    			<ul>
+        			<li><strong>핵심 기술:</strong> <span class="text-highlight">Exiplex 고효율 발광층</span> (EQE 17%)</li>
+        			<li><strong>특징:</strong> 고무처럼 늘어나는 3D 신축성, 내충격성</li>
+        			<li><strong>활용:</strong> 천장 손잡이, 굴곡진 필러까지 끊김 없는 화면 확장</li>
+    			</ul>
+		</div>
+
             </div>
         </section>
 
@@ -573,6 +601,32 @@
                         </div>
                     </div>
                 </div>
+
+	<span class="badge phase3">Phase 3 : Elastomer Printing</span>
+    		<h3 style="font-size:1.2rem; border-bottom:1px solid #444; padding-bottom:10px; margin-bottom:15px;">스트레처블(Stretchable)</h3>
+    
+    		<div class="process-step">
+        		<div class="step-number">1</div>
+        		<div class="step-content">
+            		<strong>엘라스토머 기판 형성</strong>
+            		<span style="font-size:0.85rem; color:var(--text-sub);">고무와 같은 탄성을 가진 특수 폴리머 기판 사용</span>
+        		</div>
+    		</div>
+    		<div class="process-step">
+        		<div class="step-number">2</div>
+        		<div class="step-content">
+            		<strong>아일랜드(Island) 구조 설계</strong>
+            		<span style="font-size:0.85rem; color:var(--text-sub);">화소가 위치한 '섬'과 이를 잇는 '다리' 구조로 인장 스트레스 분산</span>
+        		</div>
+    		</div>
+    		<div class="process-step">
+        		<div class="step-number">3</div>
+        		<div class="step-content">
+            		<strong>Exiplex 발광층 증착</strong>
+            		<span style="font-size:0.85rem; color:var(--text-sub);">늘어날 때도 효율 저하 없는 '에너지 전달 메커니즘' 적용</span>
+        		</div>
+    		</div>
+
             </div>
         </section>
 
